@@ -1,0 +1,17 @@
+{
+  "name": "timevaultnetwork",
+  "version": "1.0.0",
+  "description": "TimeVaultNetwork: Where your memories do the time travel, not you!",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2",
+    "mongoose": "^8.2.4"
+  }
+}
