@@ -41,9 +41,9 @@ const CapsuleSchema = new mongoose.Schema({
 const Capsule = mongoose.model('Capsule', CapsuleSchema);
 
 /* 
-serves the home.html file when users visit the root url
+serves the index.html file when users visit the root url
   */
-app.get('/', (_req, res) => {res.sendFile(path.join(__dirname, 'home.html'));});
+app.get('/', (_req, res) => {res.sendFile(path.join(__dirname, 'index.html'));});
 
 /* 
 handles requests to explore the collection of time capsules stored in the database. 
