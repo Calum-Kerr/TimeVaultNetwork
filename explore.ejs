@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Explore - Time Vault Network</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #414141;
+            color: #333;
+        }
+        .navbar {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 14px 20px;
+            background-color: #333;
+            color: white;
+        }
+        .navbar a {
+            float: none;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            transition: background-color 0.3s;
+        }
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .navbar .navbar-logo {
+            margin-right: auto;
+        }
+        .capsules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        .capsule-item {
+            text-align: center;
+        }
+        .capsule-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+        .capsule-item .info {
+            background-color: #333;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+        .capsule-item .info h3 {
+            color: #ffffff;
+            margin-top: 0;
+        }
+        .capsule-item .info p {
+        color: #ffffff;
+            margin-bottom: 0;
+        }
+         footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+        footer .footer-content a,
+        footer .social-icons a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        footer .social-icons a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="home.html" class="navbar-logo">TimeVaultNetwork</a>
+            <div class="navbar-right">
+                <a href="about.html">About</a>
+                <a href="explore.ejs">Explore</a>
+                <a href="reviews.html">Reviews</a>
+                <a href="#" onclick="toggleRegistrationCard()">Create</a>
+                <a href="#" onclick="toggleRegistrationCard()">Profile</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <div class="capsules-grid">
+            <% capsules.forEach(capsule => { %>
+                <div class="capsule-item">
+                    <img src="placeholder_image.jpg" alt="<%= capsule.title %>">
+                    <div class="info">
+                        <h3><%= capsule.title %></h3>
+                        <p>Year Buried: <%= capsule.yearBuried %></p>
+                        <p>Category: <%= capsule.category %></p>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="footer-content">
+            <a href="#">Terms of Service</a>
+            <a href="#">Privacy Policy</a>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/" target="_blank">Facebook</a>
+                <a href="https://twitter.com/" target="_blank">Twitter</a>
+                <a href="https://www.instagram.com/" target="_blank">Instagram</a>
+            </div>
+        </div>
+        <p>&copy; 2024 Time Vault Network. All rights reserved.</p>
+    </footer>
+</body>
+</html>

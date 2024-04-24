@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Capsule - Time Vault Network</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #414141;
+            color: #333;
+        }
+        .navbar {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 14px 20px;
+            background-color: #333;
+            color: white;
+        }
+        .navbar a {
+            float: none;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            transition: background-color 0.3s;
+        }
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .navbar .navbar-logo {
+            margin-right: auto;
+        }
+        .create-form-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            padding: 50px 20px;
+        }
+        .upload-section {
+            flex: 1;
+            padding: 0 20px;
+        }
+        .upload-section h2 {
+            color: #fff;
+            font-size: 1.5em;
+            margin-bottom: 1em;
+        }
+        .upload-section .image-preview {
+            width: 100%;
+            height: 200px;
+            background-color: #666; 
+            border-radius: 5px;
+            margin-bottom: 1em;
+        }
+        .upload-section .upload-button {
+            background-color: #e63946;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.2s;
+        }
+        .upload-section .upload-button:hover {
+            background-color: #c72c41;
+        }
+        .create-form {
+            flex: 2;
+            text-align: left;
+            padding: 20px;
+            background-color: #333; 
+            border-radius: 5px;
+        }
+        .create-form h1 {
+            color: #fff;
+            font-size: 2.5em;
+            margin-bottom: 1em;
+        }
+        .create-form label {
+            color: #fff;
+            display: block;
+            margin-bottom: 0.5em;
+        }
+        .create-form input[type="text"],
+        .create-form textarea,
+        .create-form .button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 1em;
+            box-sizing: border-box;
+        }
+        .create-form textarea {
+            height: 150px;
+        }
+        .create-form .button {
+            background-color: #e63946;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.25em;
+            transition: background-color 0.2s;
+        }
+        .create-form .button:hover {
+            background-color: #c72c41;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+        }
+        footer .footer-content a,
+        footer .social-icons a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        footer .social-icons a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="home.html" class="navbar-logo">TimeVaultNetwork</a>
+            <div class="navbar-right">
+                <a href="about.html">About</a>
+                <a href="explore.ejs">Explore</a>
+                <a href="reviews.html">Reviews</a>
+                <a href="#" onclick="toggleRegistrationCard()">Create</a>
+                <a href="#" onclick="toggleRegistrationCard()">Profile</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="create-form-container">
+            <div class="upload-section">
+                <h2>Upload Pictures</h2>
+                <div class="image-preview"></div>
+                <button class="upload-button">Upload</button>
+            </div>
+            <form class="create-form" id="createForm">
+                <h1>Create New Capsule</h1>
+                <label for="title">Title</label>
+                <input type="text" id="title" name="title" placeholder="Enter title" required>
+                <label for="yearBuried">Year Buried</label>
+                <input type="text" id="yearBuried" name="yearBuried" placeholder="Enter year buried" required>
+                <label for="contentDescription">Content Description</label>
+                <textarea id="contentDescription" name="contentDescription" placeholder="Enter content description" required></textarea>
+                <label for="category">Category</label>
+                <input type="text" id="category" name="category" placeholder="Enter category" required>
+                <label for="condition">Condition</label>
+                <input type="text" id="condition" name="condition" placeholder="Enter condition" required>
+                <input type="submit" value="Create Capsule" class="button">
+            </form>
+        </div>
+    </main>
+    
+    
+    <footer>
+        <div class="footer-content">
+            <a href="#">Terms of Service</a>
+            <a href="#">Privacy Policy</a>
+            <div class="social-icons">
+                <a href="https://www.facebook.com/" target="_blank">Facebook</a>
+                <a href="https://twitter.com/" target="_blank">Twitter</a>
+                <a href="https://www.instagram.com/" target="_blank">Instagram</a>
+            </div>
+        </div>
+        <p>&copy; 2024 Time Vault Network. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // create form 
+        document.getElementById('createForm').onsubmit = async (e) =>{
+            e.preventDefault();
+            const response = await fetch('/create-capsule',{
+                method: 'POST',
+                headers:{'Content-Type': 'application/json', },
+                body: JSON.stringify({title: document.getElementById('title').value,
+                    yearBuried: document.getElementById('yearBuried').value,
+                    contentDescription: document.getElementById('contentDescription').value,
+                    category: document.getElementById('category').value,
+                    condition: document.getElementById('condition').value,
+                })
+            });
+            if(response.ok){
+                alert('Capsule created successfully');
+            }else{
+                const error = await response.text();
+                alert(`Capsule creation failed: ${error}`);
+            }
+        };
+    </script>
+</body>
+</html>
